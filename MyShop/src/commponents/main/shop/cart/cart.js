@@ -7,12 +7,13 @@ import Detail from "../productdetail/productdetail.js";
 
 export default class Cart extends Component{
     render(){
+        const {cartarray} = this.props;
         return(
             <NavigationExperimental.Navigator
                 initialRoute={{name:"CART_VIEW"}}
                 renderScene={(route, navigator)=>{
                     switch(route.name){
-                        case 'CART_VIEW': return <Cartview navigator={navigator} navigator={navigator} />;
+                        case 'CART_VIEW': return <Cartview navigator={navigator} cartarray={cartarray}/>;
                         default: return <Detail navigator={navigator} />;
                     }
                 }}

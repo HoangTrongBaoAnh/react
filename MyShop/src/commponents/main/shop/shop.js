@@ -6,6 +6,10 @@ import Contact from './contact/contact.js';
 import Search from './search/search.js';
 import Cart from './cart/cart.js';
 import Header from './header.js';
+import fetchdata from '../../../api/fetchdata.js';
+import Savecart from '../../../api/savecart.js';
+import Getcart from '../../../api/getcart.js';
+import global from "../../global.js";
 
 const {height} = Dimensions.get('window');
 
@@ -16,20 +20,27 @@ export default class Shop extends Component{
         this.state={
             selectedTab:"home",
             types: [],
-            topproduct: []
+            topproduct: [],
+            cartarray: []
         }
+        global.addproducttocart = this.addproducttocart.bind(this);
     }
-    componentDidMount(){
 
-        fetch("http://192.168.100.13/app/")
-        .then((response)=>response.json())
+    componentDidMount(){
+        fetchdata()
         .then((responseJson)=>{
             const {type,product} = responseJson;
             this.setState({types: type, topproduct: product})
         });
-        
+        Getcart()
+        .then(cartarray => this.setState({cartarray}));
     }
     
+    addproducttocart(product){
+        this.setState({cartarray: this.state.cartarray.concat({product, quantity: 1})},
+        () => Savecart(this.state.cartarray));
+        
+    }
     openmenu(){
         const {open} = this.props;
         open();
@@ -51,13 +62,12 @@ export default class Shop extends Component{
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'cart'}
                         title="Cart"
-                        badgeText="1"
+                        badgeText={this.state.cartarray.length}
                         renderIcon={() => <Image style={styles.icon} source={require("../../../../media/appicon/cart0.png")} />}
                         renderSelectedIcon={() => <Image style={styles.icon} source={require("../../../../media/appicon/cart.png")} />}
-                        //badgeText="1"
                         onPress={() => this.setState({ selectedTab: 'cart' })}
                         selectedTitleStyle={{color:"#34b089", fontFamily:"avenir"}}>
-                        <Cart></Cart>
+                        <Cart cartarray={this.state.cartarray}></Cart>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 'search'}

@@ -5,40 +5,13 @@ import ListView from "deprecated-react-native-listview";
 const {width} = Dimensions.get("window");
 
 export default class Topproduct extends Component{
-    constructor(props){
-        super(props);
-        const ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>r1!==r2});
-        const {topproduct} = this.props;
-        this.state={
-            dataSource: ds.cloneWithRows(topproduct)
-        }
-    }
-    
     gotodetail (product) {
         const {navigator} = this.props;
         navigator.push({name: 'DETAIL',product});
     }
     /*
-    <ListView contentContainerStyle={styles.body}
-                    dataSource = {this.state.dataSource}
-                    renderRow = {product => (
-                        <TouchableOpacity onPress={this.gotodetail.bind(this)}>
-                            <View style={styles.productcontainter}>
-                                    <Image style={styles.productimage} source={require("../../../../../media/temp/sp1.jpeg")}></Image>
-                                    <Text style={styles.producname}>PRODUCT NAME</Text>
-                                    <Text style={styles.productprice}>400$</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-               />
-    */
-    render(){
-        return(
-            <View style={styles.wrapper}>
-               <View style={styles.titlecontainer}>
-                   <Text style={styles.title}>TOP PRODUCT</Text>
-               </View>
-               <View style={styles.body}>
+    
+        <View style={styles.body}>
                     {this.props.topproduct.map(e =>(
                         <TouchableOpacity onPress={() => this.gotodetail(e)} key={e.id}>
                             <View style={styles.productcontainter}>
@@ -49,6 +22,31 @@ export default class Topproduct extends Component{
                         </TouchableOpacity>
                     ))}
                </View>
+    */
+    render(){
+        const {topproduct} = this.props;
+        return(
+            <View style={styles.wrapper}>
+               <View style={styles.titlecontainer}>
+                   <Text style={styles.title}>TOP PRODUCT</Text>
+               </View>
+               <ListView contentContainerStyle={styles.body}
+                    enableEmptySections
+                    dataSource={new ListView.DataSource({rowHasChanged:(r1,r2)=>r1!==r2}).cloneWithRows(topproduct)}
+                    renderRow = {product => (
+                        <TouchableOpacity onPress={() => this.gotodetail(product)}>
+                            <View style={styles.productcontainter}>
+                                <Image style={styles.productimage} source={{ uri: `http://192.168.100.24/app/images/product/${product.images[0]}` }}></Image>
+                                <Text style={styles.producname}>{product.name.toUpperCase()}</Text>
+                                <Text style={styles.productprice}>{product.price}$</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                    renderSeparator={(sectionId, rowId)=>{
+                        if(rowId%2===1) return <View style={{width, height: 10}} />;
+                        return null;
+                    }}
+               />
             </View>
         );
     }
@@ -94,12 +92,9 @@ const styles = StyleSheet.create({
             width: 0,
             height: 3,
         },
-        
-        
         borderColor: '#fff',
-        
-        
         elevation: 2,
+        marginBottom: 10
     },
     productimage: {
         width: prwidth,

@@ -3,8 +3,7 @@ import {
     View, Text, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity 
 } from 'react-native';
 
-import img1 from '../../../../../media/temp/sp5.jpeg';
-import img2 from '../../../../../media/temp/sp4.jpeg';
+import global from "../../../global.js";
 
 const back = require('../../../../../media/appicon/back.png');
 const cart = require('../../../../../media/appicon/cartfull.png');
@@ -15,6 +14,10 @@ export default class ProductDetail extends Component {
     goBack() {
         const { navigator } = this.props;
         navigator.pop();
+    }
+    addthisproducttocart(){
+        const {product} = this.props;
+        global.addproducttocart(product);
     }
     render() {
         const {
@@ -32,14 +35,14 @@ export default class ProductDetail extends Component {
                         <TouchableOpacity onPress={this.goBack.bind(this)}>
                             <Image style={backStyle} source={back} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={this.addthisproducttocart.bind(this)}>
                             <Image style={cartStyle} source={cart} />
                         </TouchableOpacity>
                     </View>
                     <View style={imageContainer}>
                         <ScrollView style={{ flexDirection: 'row', padding: 10, height: swiperHeight }} horizontal >
-                            <Image source={{ uri: `http://192.168.100.13/app/images/product/${images[0]}` }} style={productImageStyle} />
-                            <Image source={{ uri: `http://192.168.100.13/app/images/product/${images[1]}` }} style={productImageStyle} />
+                            <Image source={{ uri: `http://192.168.100.24/app/images/product/${images[0]}` }} style={productImageStyle} />
+                            <Image source={{ uri: `http://192.168.100.24/app/images/product/${images[1]}` }} style={productImageStyle} />
                         </ScrollView>
                     </View>
                     <View style={footer}>
