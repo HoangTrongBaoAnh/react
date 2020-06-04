@@ -1,3 +1,6 @@
 module.exports = {
-    addproducttocart: null
+    addproducttocart: null,
+    tangsoluong: null,
+    giamsoluong: null,
+    xoasp: null
 };

@@ -13,7 +13,6 @@ import global from "../../global.js";
 
 const {height} = Dimensions.get('window');
 
-
 export default class Shop extends Component{
     constructor(props){
         super(props);
@@ -24,6 +23,9 @@ export default class Shop extends Component{
             cartarray: []
         }
         global.addproducttocart = this.addproducttocart.bind(this);
+        global.tangsoluong = this.tangsoluong.bind(this);
+        global.giamsoluong = this.giamsoluong.bind(this);
+        global.xoasp = this.xoasp.bind(this);    
     }
 
     componentDidMount(){
@@ -41,6 +43,33 @@ export default class Shop extends Component{
         () => Savecart(this.state.cartarray));
         
     }
+
+    tangsoluong(productid){
+        const newcart = this.state.cartarray.map(e => {
+            if(e.product.id !== productid) return e;
+            return {product: e.product, quantity: e.quantity + 1};
+
+        });
+        this.setState({cartarray: newcart},
+        () => Savecart(this.state.cartarray));
+    }
+
+    giamsoluong(productid){
+        const newcart = this.state.cartarray.map(e => {
+            if(e.product.id !== productid) return e;
+            return {product: e.product, quantity: e.quantity - 1};
+
+        });
+        this.setState({cartarray: newcart},
+            () => Savecart(this.state.cartarray));
+    }
+
+    xoasp(productid){
+        const newcart = this.state.cartarray.filter(e => e.product.id !== productid);
+        this.setState({cartarray: newcart},
+            () => Savecart(this.state.cartarray));
+    }
+
     openmenu(){
         const {open} = this.props;
         open();
