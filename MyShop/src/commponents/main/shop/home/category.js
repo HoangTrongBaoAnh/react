@@ -6,9 +6,9 @@ const {width,height} = Dimensions.get("window");
 
 
 export default class Category extends Component{
-    gottolistproduct(){
+    gottolistproduct(category){
         const {navigator} = this.props;
-        navigator.push({name: 'LIST'});
+        navigator.push({name: 'LIST', category});
     }
     render(){
         const {types} = this.props;
@@ -20,7 +20,7 @@ export default class Category extends Component{
                 <View style={{flex:4, justifyContent:"flex-end"}}>
                     <Swiper width={imgwidth} height={imgheight}>
                         {types.map(e => (
-                            <TouchableOpacity onPress={this.gottolistproduct.bind(this)} key={e.id}>
+                            <TouchableOpacity onPress={() => this.gottolistproduct(e)} key={e.id}>
                                 <ImageBackground source={{ uri: `http://192.168.100.13/app/images/type/${e.image}` }} style={styles.image1} >
                                     <Text style={styles.text1}>{e.name}</Text>
                                 </ImageBackground>

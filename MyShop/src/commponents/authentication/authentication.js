@@ -3,6 +3,10 @@ import {View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, TextInput} 
 
 import icmenu from "../../../media/appicon/back_white.png";
 import iclogo from "../../../media/appicon/ic_logo.png";
+import dangki from '../../api/dangki.js';
+import Signin from './signin.js';
+import Signup from './signup.js';
+
 
 const {height} = Dimensions.get('window');
 
@@ -15,6 +19,8 @@ export default class Authentication extends Component{
         super(props);
         this.state = {issignin : true}
     }
+
+
     signin(){
         this.setState({issignin:true})
     }
@@ -22,27 +28,7 @@ export default class Authentication extends Component{
         this.setState({issignin:false})
     }
     render(){
-        const signin = (
-            <View>
-                <TextInput style={styles.input} placeholder="Enter ur email"></TextInput>
-                <TextInput style={styles.input} placeholder="Enter ur password"></TextInput>
-                <TouchableOpacity style={styles.btnsigninnow}>
-                    <Text style={styles.btnsigninnowtext}>SIGN IN NOW</Text>
-                </TouchableOpacity>
-            </View>
-        );
-        const signup = (
-            <View>
-                <TextInput style={styles.input} placeholder="Enter ur name"></TextInput>
-                <TextInput style={styles.input} placeholder="Enter ur email"></TextInput>
-                <TextInput style={styles.input} placeholder="Enter ur password"></TextInput>
-                <TextInput style={styles.input} placeholder="Re-Enter ur password"></TextInput>
-                <TouchableOpacity style={styles.btnsigninnow}>
-                    <Text style={styles.btnsigninnowtext}>SIGN UP NOW</Text>
-                </TouchableOpacity>
-            </View>
-        );
-        const main = this.state.issignin ? signin : signup;
+        const main = this.state.issignin ? <Signin /> : <Signup />;
         const {issignin} = this.state;
         return(
             <View style={styles.container}>

@@ -1,24 +1,106 @@
 import React, { Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, ScrollView, Image} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, ScrollView, Image, RefreshControl} from 'react-native';
+import ListView from "deprecated-react-native-listview";
+import laydssanpham from '../../../../api/laysp.js'
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
 
 export default class Listproduct extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            dataSource: new ListView.DataSource({rowHasChanged:(r1,r2)=>r1!==r2}),
+            refreshing: false,
+            page: 1
+        };
+        this.arr = [];
+    }
+
+    componentDidMount(){
+        const idtype = this.props.category.id;
+        laydssanpham(idtype,1)
+        .then(res => {
+            this.arr = res;
+            this.setState({dataSource: this.state.dataSource.cloneWithRows(res)});
+        })
+        .catch(err => console.log(err))
+    }
+
     goback(){
         const {navigator} = this.props;
         navigator.pop();
     }
-    golist(){
+    golist(product){
         const {navigator} = this.props;
-        navigator.push({name: 'DETAIL'});
+        navigator.push({name: 'DETAIL', product});
     }
+
     render(){
+        const {category} = this.props;
         return(
             <View style={styles.containter}>
-                <ScrollView style={styles.wraper}>
+                <View style={styles.wraper}>
                     <View style={styles.header}>
                         <TouchableOpacity onPress={this.goback.bind(this)}>
                             <Image style={styles.icon} source={require("../../../../../media/appicon/backList.png")}/>
                         </TouchableOpacity>
-                        <Text style={styles.title}>Little dress</Text>
+                        <Text style={styles.title}>{category.name}</Text>
+                        <View style={{width: 30}}></View>
+                    </View>
+                    <ListView
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={() => {
+                                    this.setState({refreshing: true});
+                                    const newpage = this.state.page + 1;
+                                    const id = this.props.category.id;
+                                    laydssanpham(id, newpage)
+                                    .then(res => {
+                                        this.arr = res.concat(this.arr);
+                                        this.setState({
+                                            dataSource: this.state.dataSource.cloneWithRows(this.arr),
+                                            refreshing: false
+                                        })
+                                    })
+                                    .catch(err => console.log(err))
+                                }}
+                            />
+                        }
+                        dataSource={this.state.dataSource}
+                        renderRow={product => (
+                            <View style={styles.prcontainer}>
+                                <Image style={styles.primage} source={{ uri: `http://192.168.100.17/app/images/product/${product.images[0]}` }}/>
+                                <View style={styles.prinfo}>
+                                    <Text style={styles.name}>{toTitleCase(product.name)}</Text>
+                                    <Text style={styles.price}>{product.price}$</Text>
+                                    <Text style={styles.material}>{product.material}</Text>
+                                    <View style={styles.lsinfo}>
+                                    <Text style={styles.color}>{product.color}</Text>
+                                        <View style={{backgroundColor:product.color.toLowerCase(), width: 15, height: 15, borderRadius: 8}}></View>
+                                        <TouchableOpacity onPress={() => this.golist(product)}>
+                                            <Text style={styles.showdetail}>Show Detail</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        )}
+                        
+                    />
+                </View>
+            </View>
+        );
+    }
+}
+/*
+<ScrollView style={styles.wraper}>
+                    <View style={styles.header}>
+                        <TouchableOpacity onPress={this.goback.bind(this)}>
+                            <Image style={styles.icon} source={require("../../../../../media/appicon/backList.png")}/>
+                        </TouchableOpacity>
+                        <Text style={styles.title}>{category.name}</Text>
                         <View style={{width: 30}}></View>
                     </View>
                     <View style={styles.prcontainer}>
@@ -97,10 +179,7 @@ export default class Listproduct extends Component{
                         </View>
                     </View>
                 </ScrollView>
-            </View>
-        );
-    }
-}
+*/
 const styles = StyleSheet.create({
     containter: {
         flex: 1,
