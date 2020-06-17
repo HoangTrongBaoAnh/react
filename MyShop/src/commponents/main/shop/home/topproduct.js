@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import {Text, View, Dimensions, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import ListView from "deprecated-react-native-listview";
+import * as url from "../../../../api/url.js";
 
 const {width} = Dimensions.get("window");
 
@@ -9,21 +10,8 @@ export default class Topproduct extends Component{
         const {navigator} = this.props;
         navigator.push({name: 'DETAIL',product});
     }
-    /*
-    
-        <View style={styles.body}>
-                    {this.props.topproduct.map(e =>(
-                        <TouchableOpacity onPress={() => this.gotodetail(e)} key={e.id}>
-                            <View style={styles.productcontainter}>
-                                <Image style={styles.productimage} source={{ uri: `http://192.168.100.13/app/images/product/${e.images[0]}` }}></Image>
-                                <Text style={styles.producname}>{e.name.toUpperCase()}</Text>
-                                <Text style={styles.productprice}>{e.price}$</Text>
-                            </View>
-                        </TouchableOpacity>
-                    ))}
-               </View>
-    */
     render(){
+        //console.log(url.url);
         const {topproduct} = this.props;
         return(
             <View style={styles.wrapper}>
@@ -36,7 +24,7 @@ export default class Topproduct extends Component{
                     renderRow = {product => (
                         <TouchableOpacity onPress={() => this.gotodetail(product)}>
                             <View style={styles.productcontainter}>
-                                <Image style={styles.productimage} source={{ uri: `http://192.168.100.24/app/images/product/${product.images[0]}` }}></Image>
+                                <Image style={styles.productimage} source={{ uri: url.url+`/app/images/product/${product.images[0]}` }}></Image>
                                 <Text style={styles.producname}>{product.name.toUpperCase()}</Text>
                                 <Text style={styles.productprice}>{product.price}$</Text>
                             </View>
@@ -53,7 +41,7 @@ export default class Topproduct extends Component{
 }
 
 const prwidth = (width - 60) /2;
-const prgheight = prwidth/361 * 452;
+const prgheight = prwidth/864 * 864;
 
 const styles = StyleSheet.create({
     wrapper: {

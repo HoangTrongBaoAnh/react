@@ -1,15 +1,56 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, TextInput} from 'react-native';;
+import dangnhap from '../../api/dangnhap.js';
+import global from '../global.js';
+
+import savetoken from '../../api/savetoken.js';
+//import gettoken from '../../api/gettoken.js'
 
 const {height} = Dimensions.get('window');
 
 export default class Signin extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        };
+    }
+    /*|
+    componentDidMount(){
+        gettoken()
+        .then(a => console.log('token:::' + a));
+    }
+    */
+    dangnhap(){
+        const {email, password} = this.state;
+        dangnhap(email,password)
+        .then(res => {
+            global.dadangnhap(res.user);
+            this.props.gobackMain();
+            savetoken(res.token);
+        })
+        .catch(err => console.log(err));
+    }
+
     render(){
+        const {email, password} = this.state;
         return(
             <View>
-                <TextInput style={styles.input} placeholder="Enter ur email"></TextInput>
-                <TextInput style={styles.input} placeholder="Enter ur password"></TextInput>
-                <TouchableOpacity style={styles.btnsigninnow}>
+                <TextInput
+                 style={styles.input}
+                 placeholder="Enter ur email"
+                 value={email}
+                 onChangeText={text => this.setState({email: text})}>
+                </TextInput>
+                <TextInput
+                 style={styles.input}
+                 placeholder="Enter ur password"
+                 value={password}
+                 onChangeText={text => this.setState({password: text})}
+                 secureTextEntry>
+                 </TextInput>
+                <TouchableOpacity style={styles.btnsigninnow} onPress={this.dangnhap.bind(this)}>
                     <Text style={styles.btnsigninnowtext}>SIGN IN NOW</Text>
                 </TouchableOpacity>
             </View>

@@ -1,5 +1,5 @@
 const dangki = (email, name, password) => (
-    fetch("http://192.168.100.11/app/register.php",
+    fetch("http://192.168.100.9/app/register.php",
     {
         method: 'POST',
         headers:{

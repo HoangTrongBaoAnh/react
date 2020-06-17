@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, ScrollView, Image, RefreshControl} from 'react-native';
 import ListView from "deprecated-react-native-listview";
 import laydssanpham from '../../../../api/laysp.js'
+import * as url from "../../../../api/url.js";
 
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
@@ -72,7 +73,7 @@ export default class Listproduct extends Component{
                         dataSource={this.state.dataSource}
                         renderRow={product => (
                             <View style={styles.prcontainer}>
-                                <Image style={styles.primage} source={{ uri: `http://192.168.100.17/app/images/product/${product.images[0]}` }}/>
+                                <Image style={styles.primage} source={{ uri: url.url+`/app/images/product/${product.images[0]}` }}/>
                                 <View style={styles.prinfo}>
                                     <Text style={styles.name}>{toTitleCase(product.name)}</Text>
                                     <Text style={styles.price}>{product.price}$</Text>

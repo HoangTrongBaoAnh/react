@@ -3,10 +3,20 @@ import {Text, View, TouchableOpacity, StyleSheet, Image, unstable_enableLogBox} 
 
 import profile from "../../../media/temp/profile.png";
 
+import global from '../global.js'
+
 export default class Menu extends Component{
     constructor(props){
         super(props);
-        this.state = {islogin : false};
+        this.state = {user : null};
+        global.dadangnhap = this.dangnhap.bind(this);
+    }
+    dangnhap(user){
+        this.setState({user});
+        //console.log(user.name);
+    }
+    dangxuat(user){
+        this.setState({user: null})
     }
     gotoauthentication(){
         const { navigator } = this.props;
@@ -21,6 +31,8 @@ export default class Menu extends Component{
         navigator.push({name:"ORDERHISTORY"});
     }
     render(){
+        const {user} = this.state;
+        
         const logout = (
             <View style={{flex:1}} >
                 <TouchableOpacity style={styles.btn} onPress={this.gotoauthentication.bind(this)}>
@@ -28,10 +40,10 @@ export default class Menu extends Component{
                 </TouchableOpacity>
             </View>
         );
-
+    
         const login = (
             <View style={styles.logincontainer}>
-                <Text style={styles.user}>Administrator</Text>
+                <Text style={styles.user}>{user ? user.name : ''}</Text>
                 <View>
                     <TouchableOpacity style={styles.btnsignin} onPress={this.gotoorderhistory.bind(this)}>
                         <Text style={styles.textsignin}>order history</Text>
@@ -39,14 +51,14 @@ export default class Menu extends Component{
                     <TouchableOpacity style={styles.btnsignin} onPress={this.gotochangeinfo.bind(this)}>
                         <Text style={styles.textsignin}>Change info</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnsignin}>
+                    <TouchableOpacity style={styles.btnsignin} onPress={this.dangxuat.bind(this)}>
                         <Text style={styles.textsignin}>Sign out</Text>
                     </TouchableOpacity>
                 </View>
                 <View></View>
             </View>
         );
-        const main = this.state.islogin ? login : logout;
+        const main = this.state.user ? login : logout;
         return(
             <View style={styles.container}>
                 <Image style={styles.icon} source={profile}></Image>

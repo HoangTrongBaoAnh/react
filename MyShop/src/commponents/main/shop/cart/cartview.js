@@ -8,6 +8,7 @@ import ListView from "deprecated-react-native-listview";
 import sp1 from '../../.././../../media/temp/sp1.jpeg';
 
 import global from "../../../global.js";
+import * as url from "../../../../api/url.js";
 
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
@@ -48,7 +49,7 @@ export default class CartView extends Component {
                     dataSource={new ListView.DataSource({rowHasChanged:(r1,r2)=>r1!==r2}).cloneWithRows(cartarray)}
                     renderRow={e => (
                         <View style={product}>
-                            <Image source={{ uri: `http://192.168.100.13/app/images/product/${e.product.images[0]}` }} style={productImage} />
+                            <Image source={{ uri: url.url+`/app/images/product/${e.product.images[0]}` }} style={productImage} />
                             <View style={[mainRight]}>
                                 <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                                     <Text style={txtName}>{toTitleCase(e.product.name)}</Text>

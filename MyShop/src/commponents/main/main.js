@@ -3,8 +3,19 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import Menu from './menu.js';
 import Shop from './shop/shop.js';
 import Drawer from 'react-native-drawer';
+import kiemtradangnhap from '../../api/kiemtradangnhap.js'
+import gettoken from '../../api/gettoken.js';
+import global from '../global.js'
 
 export default class Main extends Component{
+    
+    componentDidMount(){
+        gettoken()
+        .then(token => kiemtradangnhap(token))
+        .then(res => global.dadangnhap(res.user))
+        .catch(err => console.log('LOI',err))
+    }
+    
     gotoauthentication(){
         const { navigator } = this.props;
         navigator.push({name:"AUTHENTICATION"});

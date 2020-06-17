@@ -19,7 +19,9 @@ export default class Authentication extends Component{
         super(props);
         this.state = {issignin : true}
     }
-
+    gotosignin(){
+        this.setState({issignin:true});
+    }
 
     signin(){
         this.setState({issignin:true})
@@ -28,7 +30,7 @@ export default class Authentication extends Component{
         this.setState({issignin:false})
     }
     render(){
-        const main = this.state.issignin ? <Signin /> : <Signup />;
+        const main = this.state.issignin ? <Signin gobackMain={this.gobackMain.bind(this)}/> : <Signup gotosignin={this.gotosignin.bind(this)}/>;
         const {issignin} = this.state;
         return(
             <View style={styles.container}>

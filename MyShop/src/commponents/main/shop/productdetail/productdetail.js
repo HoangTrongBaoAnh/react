@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 
 import global from "../../../global.js";
+import * as url from "../../../../api/url.js";
 
 const back = require('../../../../../media/appicon/back.png');
 const cart = require('../../../../../media/appicon/cartfull.png');
@@ -41,8 +42,8 @@ export default class ProductDetail extends Component {
                     </View>
                     <View style={imageContainer}>
                         <ScrollView style={{ flexDirection: 'row', padding: 10, height: swiperHeight }} horizontal >
-                            <Image source={{ uri: `http://192.168.100.17/app/images/product/${images[0]}` }} style={productImageStyle} />
-                            <Image source={{ uri: `http://192.168.100.17/app/images/product/${images[1]}` }} style={productImageStyle} />
+                            <Image source={{ uri: url.url+`/app/images/product/${images[0]}` }} style={productImageStyle} />
+                            <Image source={{ uri: url.url+`/app/images/product/${images[1]}` }} style={productImageStyle} />
                         </ScrollView>
                     </View>
                     <View style={footer}>

@@ -30,7 +30,7 @@ export default class Authentication extends Component{
             'Notice',
             "Đăng kí thành công",
             [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
+              { text: "OK", onPress: () => this.props.gotosignin()}
             ],
             { cancelable: false }
         );

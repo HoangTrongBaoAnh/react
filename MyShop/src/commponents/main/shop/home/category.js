@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import {Text, View, Dimensions, Image, StyleSheet, ImageBackground, TouchableOpacity} from 'react-native';
 import Swiper from "react-native-swiper"
+import * as url from "../../../../api/url.js";
 
 const {width,height} = Dimensions.get("window");
 
@@ -21,7 +22,7 @@ export default class Category extends Component{
                     <Swiper width={imgwidth} height={imgheight}>
                         {types.map(e => (
                             <TouchableOpacity onPress={() => this.gottolistproduct(e)} key={e.id}>
-                                <ImageBackground source={{ uri: `http://192.168.100.13/app/images/type/${e.image}` }} style={styles.image1} >
+                                <ImageBackground source={{ uri: url.url+`/app/images/type/${e.image}` }} style={styles.image1} >
                                     <Text style={styles.text1}>{e.name}</Text>
                                 </ImageBackground>
                             </TouchableOpacity>
@@ -66,22 +67,3 @@ const styles = StyleSheet.create({
     }
     
 })
-
-/*
-<TouchableOpacity onPress={this.gottolistproduct.bind(this)}>
-                            <ImageBackground style={styles.image1} source={require("../../../../../media/temp/little.jpg")}>
-                                <Text style={styles.text1}>Little Dress</Text>
-                            </ImageBackground>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.gottolistproduct.bind(this)}>
-                            <ImageBackground style={styles.image1} source={require("../../../../../media/temp/maxi.jpg")}>
-                                <Text style={styles.text1}>Little Dress</Text>
-                            </ImageBackground>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.gottolistproduct.bind(this)}>
-                            <ImageBackground style={styles.image1} source={require("../../../../../media/temp/party.jpg")}>
-                                <Text style={styles.text1}>Little Dress</Text>
-                            </ImageBackground>
-                        </TouchableOpacity>
-
-*/

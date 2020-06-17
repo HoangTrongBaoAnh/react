@@ -1,5 +1,5 @@
 const fetchdata = () => (
-    fetch("http://192.168.43.28/app/")
+    fetch("http://192.168.100.9/app/")
     .then((response)=>response.json())
 );
 

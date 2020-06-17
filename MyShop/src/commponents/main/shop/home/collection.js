@@ -11,7 +11,7 @@ export default class Collectiom extends Component{
                     <Text style={styles.text1}>SPRING COLLECTION</Text>
                 </View>
                 <View style={{flex:4, justifyContent:"flex-end" }}>
-                    <Image style={styles.image1} source={require("../../../../../media/temp/banner.jpg")}></Image>
+                    <Image style={styles.image1} source={require("../../../../../media/appicon/banner.jpg")}></Image>
                 </View>
             </View>
         );
