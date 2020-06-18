@@ -199,8 +199,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `id_type`, `price`, `color`, `material`, `description`, `new`, `inCollection`) VALUES
---Jordan
-(29, 'Air Jordan 6 Retro', 4, 124, 'White', 'Leather', 'Taking color, material and graphic cues from the AJ7 nicknamed "Hare Jordan," the Air Jordan 6 Retro hops out in celebration of the Spring holiday with a fresh remastering of iconic AJ heritage.', 0, 0),
+
+(29, 'Air Jordan 6 Retro', 4, 124, 'White', 'Leather', 'Taking color, material and graphic cues from the AJ7 nicknamed Hare Jordan, the Air Jordan 6 Retro hops out in celebration of the Spring holiday with a fresh remastering of iconic AJ heritage.', 0, 0),
 (30, 'Air Jordan 1 Low SE', 4, 121, 'Laser Blue', 'Leather', 'Always fresh and never out of style, the Air Jordan 1 Low is one of the most iconic sneakers of all time. This SE version shakes up the classic design with flavorful new color schemes and trim details.', 1, 0),
 (31, 'Air Jordan 1 Mid', 4, 133, 'Black', 'Leather', 'The Air Jordan 1 Mid Shoe is inspired by the first AJ1, offering OG fans a look at how far the Jordan brand has come since 1985.', 1, 0),
 (32, 'Air Jordan 3 Retro SE', 4, 143, 'Black/White/Gorge Green', 'Leather', 'Go wild in the Air Jordan 3 Retro SE. Part of the "Animal Instinct" pack, it features a mix of animal-inspired materials that give fresh, new identity to the iconic shoe.', 1, 0),
@@ -216,7 +216,7 @@ INSERT INTO `product` (`id`, `name`, `id_type`, `price`, `color`, `material`, `d
 (44, 'Air Jordan IV', 4, 142, 'Cool Grey/Wolf Grey/Anthracite/Volt', 'Leather', 'As fresh as its first release, the Air Jordan 4 Retro remakes Michael Jordan s 4th signature shoe for a new generation. This shoe uses suede and textile for a light, supportive feel, plus cushioning for underfoot comfort.', 0, 0),
 (45, 'Air Jordan 1 Mid GT', 4, 141, ' Pink Quartz', 'Leather', 'The Air Jordan 1 Mid GT Infant/Toddler Shoe features a combination leather upper with a perforated toe for premium style and breathability. A cushioned midsole delivers comfortable impact protection.', 0, 1),
 
---Force
+
 (46, 'Nike Air Force 1 LV8 2', 5, 117, 'Khaki', 'Leather', 'Discover new paths in the Nike Air Force 1 LV8 2. With classic Air-Sole cushioning and the same design of the ’82 OG, these legendary, trail-inspired kicks are ready for your next adventure.', 0, 0),
 (47, 'Nike Air Force 1 07 LV8', 5, 124, 'Orange Trance', 'Leather', 'The radiance lives on in the Nike Air Force 1 ’07, the b-ball OG that puts a fresh spin on what you know best: stitched overlays, bold colors and the perfect amount of flash to make you shine.', 1, 0),
 (48, 'Nike Air Force 1 Sage Low LX', 5, 109, 'Light Cream', 'Leather', 'Taking both height and craft to new levels, the Nike Air Force 1 Sage Low LX features a platform midsole and pared-down upper. Rolled edges and clean lines replace traditional overlays for a bold look.', 1, 0),
@@ -233,7 +233,7 @@ INSERT INTO `product` (`id`, `name`, `id_type`, `price`, `color`, `material`, `d
 (59, 'Nike Air Force 1 Jewel', 5, 113, 'Black/White/University Red', 'Leather', 'This iteration of the iconic Air Force 1 lineage honors the Chicago Bulls pinstripe uniforms of the late-90s. It features inspirational messages on the sockliner, a jewel Swoosh and "Chicago" embroidered on the heel tab.', 0, 1),
 (60, 'Nike Air Force 1 High 07', 5, 147, 'Black', 'Leather', 'The legend lives on in the Nike Air Force 1 High ’07 Men s Shoe, a modern take on the icon that blends classic style and fresh, crisp details.', 0, 0),
 
---Vans
+
 (61, 'SK8-HI', 6, 119, 'BLACK', 'Cotton', 'The Sk8-Hi, Vans legendary lace-up high top inspired by the classic Old Skool, has a durable canvas and suede upper, a supportive and padded ankle, and Vans vulcanized signature Waffle Outsole.', 0, 0),
 (62, 'OLD SKOOL', 6, 113, 'SILVER LUREX', 'Cotton', 'The Old Skool, the Vans classic skate shoe and first to bare the iconic sidestripe, is a low top lace-up featuring an allover silver silver Lurex thread, giving this style a metallic finish. It also includes sturdy canvas uppers, re-enforced toecaps to withstand repeated wear, padded collars for support and flexibility, and signature rubber waffle outsoles.', 0, 0),
 (63, 'OLD SKOOL', 6, 108, 'OCHRE','Cotton', 'The Old Skool, the Vans classic skate shoe and first to bare the iconic sidestripe, is a low top lace-up featuring an allover silver silver Lurex thread, giving this style a metallic finish. It also includes sturdy canvas uppers, re-enforced toecaps to withstand repeated wear, padded collars for support and flexibility, and signature rubber waffle outsoles.', 0, 1),
@@ -242,7 +242,7 @@ INSERT INTO `product` (`id`, `name`, `id_type`, `price`, `color`, `material`, `d
 (66, 'NEON OLD SKOOL', 6, 135, 'GREEN GECKO', 'Cotton', 'The Neon Old Skool, the Vans classic skate shoe and first to bare the iconic sidestripe, is a low top lace-up featuring sturdy textile uppers, re-enforced toecaps to withstand repeated wear, padded collars for support and flexibility, and signature rubber waffle outsoles.', 0, 0),
 (67, 'VANS CROSS STRAP', 6, 147, 'BLACK/WHITE', 'Cotton', 'Warp your perception of what a sandal can be. Completely rethought, the Cross Strap sandal is a nouveau twist on the traditional slide, and a fresh new silhouette with an injection of fun. Featuring suede-backed, soft leather straps with Vans-embossed logo details, the Vans Cross Strap also includes UltraCush footbeds for all day comfort, and rubber sawtooth tread.', 1, 0),
 
---Adidas
+
 (69, 'ULTRABOOST 20 S SHOES', 7, 107, 'INTENSE GREEN', 'Leather', 'Confidence from the ground up. These adidas running shoes are designed to turbo charge your daily miles. The knit upper offers stitched-in support based on motion capture technology. A soft, comfortable elastane heel allows for natural movement of the Achilles. Responsive cushioning helps keep transitions smooth and the energy flowing.', 0, 0),
 (70, 'SOLARGLIDE ST 19 SHOES', 7, 115, 'GLOW BLUE', 'Leather', 'When your run is the most uncomplicated part of your day. Designed for stability, these adidas running shoes are your tried-and-true partner for long-distance runs. Energized cushioning is firmer on the medial side for added support, and a stability rail keeps your stride feeling balanced.', 1, 0),
 (71, 'EDGE LUX 4 SHOES', 7, 154, 'CORE BLACK', 'Leather', 'Sometimes life is so busy you feel like you re living out of your gym bag. Who wants to carry three pairs of shoes in there? These adidas shoes will take you from an early-morning run around the reservoir to an evening HIIT class and keep you stylish and comfortable for everything that happens in between.', 0, 0),

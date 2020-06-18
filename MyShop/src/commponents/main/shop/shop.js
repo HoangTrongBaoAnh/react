@@ -38,21 +38,25 @@ export default class Shop extends Component{
         .then(cartarray => this.setState({cartarray}));
     }
     
+    tangsoluong(productid){
+        const newcart = this.state.cartarray.map(e => {
+            if(e.product.id !== productid) return e;
+            return {product: e.product, quantity: e.quantity + 1};
+0
+        });
+        this.setState({cartarray: newcart},
+        () => Savecart(this.state.cartarray));
+    }
+
     addproducttocart(product){
+        const isexit = this.state.cartarray.some(e => e.product.id === product.id);
+        if(isexit) return this.tangsoluong(product.id)
         this.setState({cartarray: this.state.cartarray.concat({product, quantity: 1})},
         () => Savecart(this.state.cartarray));
         
     }
 
-    tangsoluong(productid){
-        const newcart = this.state.cartarray.map(e => {
-            if(e.product.id !== productid) return e;
-            return {product: e.product, quantity: e.quantity + 1};
-
-        });
-        this.setState({cartarray: newcart},
-        () => Savecart(this.state.cartarray));
-    }
+    
 
     giamsoluong(productid){
         const newcart = this.state.cartarray.map(e => {

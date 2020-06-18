@@ -1,5 +1,5 @@
 const kiemtradangnhap= (token) => (
-    fetch("http://192.168.100.9/app/check_login.php",
+    fetch("http://192.168.100.11/app/check_login.php",
     {
         method: 'POST',
         headers:{
